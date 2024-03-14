@@ -37,10 +37,11 @@ resource "aws_ecs_cluster" "app_cluster" {
     }
   }
 
-  # Exposes metrics such as the number of running tasks in CloudWatch
+  # Exposes metrics such as Network rx/tx, CPU and Memory usage in CloudWatch
+  # Should be disabled because we use Prometheus for CPU and Memory monitoring
   setting {
     name  = "containerInsights"
-    value = "enabled"
+    value = "disabled"
   }
 }
 
