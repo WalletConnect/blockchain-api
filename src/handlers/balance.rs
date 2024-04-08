@@ -30,17 +30,21 @@ pub enum BalanceCurrencies {
 
 impl Display for BalanceCurrencies {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", match self {
-            BalanceCurrencies::BTC => "btc",
-            BalanceCurrencies::ETH => "eth",
-            BalanceCurrencies::USD => "usd",
-            BalanceCurrencies::EUR => "eur",
-            BalanceCurrencies::GBP => "gbp",
-            BalanceCurrencies::AUD => "aud",
-            BalanceCurrencies::CAD => "cad",
-            BalanceCurrencies::INR => "inr",
-            BalanceCurrencies::JPY => "jpy",
-        })
+        write!(
+            f,
+            "{}",
+            match self {
+                BalanceCurrencies::BTC => "btc",
+                BalanceCurrencies::ETH => "eth",
+                BalanceCurrencies::USD => "usd",
+                BalanceCurrencies::EUR => "eur",
+                BalanceCurrencies::GBP => "gbp",
+                BalanceCurrencies::AUD => "aud",
+                BalanceCurrencies::CAD => "cad",
+                BalanceCurrencies::INR => "inr",
+                BalanceCurrencies::JPY => "jpy",
+            }
+        )
     }
 }
 
@@ -107,7 +111,7 @@ async fn handler_internal(
     let response = state
         .providers
         .balance_provider
-        .get_balance(address, query.0, state.http_client.clone())
+        .get_balance(address, query.0)
         .await
         .tap_err(|e| {
             error!("Failed to call balance with {}", e);

@@ -29,17 +29,21 @@ pub enum PriceCurrencies {
 
 impl Display for PriceCurrencies {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", match self {
-            PriceCurrencies::BTC => "btc",
-            PriceCurrencies::ETH => "eth",
-            PriceCurrencies::USD => "usd",
-            PriceCurrencies::EUR => "eur",
-            PriceCurrencies::GBP => "gbp",
-            PriceCurrencies::AUD => "aud",
-            PriceCurrencies::CAD => "cad",
-            PriceCurrencies::INR => "inr",
-            PriceCurrencies::JPY => "jpy",
-        })
+        write!(
+            f,
+            "{}",
+            match self {
+                PriceCurrencies::BTC => "btc",
+                PriceCurrencies::ETH => "eth",
+                PriceCurrencies::USD => "usd",
+                PriceCurrencies::EUR => "eur",
+                PriceCurrencies::GBP => "gbp",
+                PriceCurrencies::AUD => "aud",
+                PriceCurrencies::CAD => "cad",
+                PriceCurrencies::INR => "inr",
+                PriceCurrencies::JPY => "jpy",
+            }
+        )
     }
 }
 
@@ -97,12 +101,7 @@ async fn handler_internal(
     let response = state
         .providers
         .fungible_price_provider
-        .get_price(
-            &chain_id,
-            &address,
-            &query.currency,
-            state.http_client.clone(),
-        )
+        .get_price(&chain_id, &address, &query.currency)
         .await
         .tap_err(|e| {
             error!("Failed to call fungible price with {}", e);
