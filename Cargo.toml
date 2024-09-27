@@ -42,6 +42,7 @@ num_enum = "0.7"
 strum = "0.26"
 strum_macros = "0.26"
 hex = "0.4"
+phf = { version = "0.11", features = ["macros"] }
 
 # Storage
 aws-config = "1.1"
@@ -81,6 +82,8 @@ rand_core = "0.6"
 prometheus-http-query = "0.6.6"
 ethers = { version = "2.0.11", git = "https://github.com/gakonst/ethers-rs" } # using Git version because crates.io version fails clippy
 alloy = { version = "0.3.6", features = ["providers"] }
+alloy-primitives = "0.8"
+alloy-sol-types = "0.8"
 
 bytes = "1.7.1"
 data-encoding = "2.6.0"

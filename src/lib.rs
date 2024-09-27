@@ -348,6 +348,8 @@ pub async fn bootstrap(config: Config) -> RpcResult<()> {
         // Wallet
         .route("/v1/wallet/prepareCalls", post(handlers::wallet::prepare_calls::handler))
         // .route("/v1/wallet/sendPrepareCalls", post(handlers::wallet::send_prepare_calls::handler))
+        // Chain agnostic orchestration
+        .route("/v1/ca/orchestrator/check", post(handlers::chain_agnostic::check::handler))
         // Health
         .route("/health", get(handlers::health::handler))
         .route_layer(tracing_and_metrics_layer)
